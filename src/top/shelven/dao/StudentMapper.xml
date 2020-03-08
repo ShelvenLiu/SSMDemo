@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.shelven.dao.StudentMapper">
+
+	<select id="queryUserNameExist" resultType="top.shelven.bean.Student">
+		select * from student where username=#{username}
+	</select>
+	
+	<insert id="register">
+		insert into student(sid,username,password) values(#{sid},#{username},#{password})
+	</insert>
+	
+	<select id="login" resultType="top.shelven.bean.Student">
+		select * from student where username=#{0} and password=#{1}
+	</select>
+	
+	<!-- 查询所有学生 -->
+	<select id="getStudentList" resultType="top.shelven.bean.Student">
+		select * from student
+	</select>
+	
+	<!-- 增加学生 -->
+	<insert id="saveStudent">
+		insert into student(sid,username,password,gender,hobby,mark) values(#{sid},#{username},#{password},#{gender},#{hobby},#{mark})
+	</insert>
+	
+	<delete id="delStudent">
+		delete from student where sid=#{sid}
+	</delete>
+	
+	<!-- 查询单个学生用于回显数据 -->
+	<select id="getStudentById" resultType="top.shelven.bean.Student">
+		select * from student where sid=#{sid}
+	</select>
+	
+	<!-- 更新修改后的数据 -->
+	<update id="saveStudentForEdit">
+		update student set username=#{username},password=#{password},gender=#{gender},hobby=#{hobby},mark=#{mark} where sid=#{sid}
+	</update>
+	
+	<!-- 查询记录总数 -->
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from student
+	</select>
+	
+	
+	<!-- 查询分页学生数据 -->
+	<select id="findPageBeanData" resultType="top.shelven.bean.Student">
+		select * from student
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+</mapper>

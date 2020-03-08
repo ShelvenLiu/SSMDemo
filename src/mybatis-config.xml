@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <!-- 将下划线分割的列名转化为pojo对象的驼峰式命名的属性名 -->
+  <settings>
+  	<setting  name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+  
+</configuration>
